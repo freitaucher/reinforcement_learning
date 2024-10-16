@@ -53,7 +53,7 @@ The run is controlled by `config.json` file.
 
 By setting up the environment, take care that the `number of traps + number of exits < total number of fields`.
 
-For training increase the number of episodes: e.g. set `"n_episodes": 100000` (increase `"save_every": 1000 ` accordingly). Also set random step probability to nonzero, e.g. `"random_step_prob": 0.5`.
+For training, increase the number of episodes: e.g. set `"n_episodes": 100000` (might increase `"save_every": 1000 ` accordingly). Also set random step probability to nonzero, e.g. `"random_step_prob": 0.5`.
 
 For testing you might not need that many episodes, so reduce "n_episodes" (`"save_every": 1 ` accordingly) and set `"random_step_prob": 0`.
 
