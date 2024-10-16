@@ -18,5 +18,5 @@ qtable[s,step] = q_table  + lr * (reward[s_new] + gamma*qtable[s_new, step_new] 
 ```
 The `step_new` is the new step from the new position `s_new` suggested by the qtable (it might not be necessarily taken).
 
-The training episodes are repeated until the qtable is getting self-consistent, i.e. does not change anymore.
+The training episodes are repeated until the qtable is getting stable, i.e. does not change anymore. Once it is stabilized one can run a testing episode, just by setting the $\epsilon=1$  which guarantees that each step is taken according to the qtable.
 
