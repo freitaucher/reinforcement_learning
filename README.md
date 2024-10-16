@@ -1,4 +1,4 @@
-# Reinforcement Learning: explicit demo
+# Reinforcement Learning: basic demo
 
 ## What it is all about
 
