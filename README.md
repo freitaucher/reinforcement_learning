@@ -38,7 +38,7 @@ The run is controlled by `config.json` file.
     "resolution": 50,			       - images resolution. Refers to a single field, i.e. the full image size is environment_shape[0] * res x environment_shape[1] * res 
     "n_episodes": 10,			       - number of episodes. For training the good number is >10000
     "save_every": 1,			       - if you train for many episodes, it makes sense to save them more rarely
-    "environment": { "new": "False",	       - if "True" the environment (as well as qtable) will be intiated from scratch 
+    "environment": { "new": "False",	       - if "True", the environment (as well as qtable) will be initiated from scratch 
 		     "shape": [20,20,1],       - shape of the environment. In fact it is 2-dimensional: the third dimension will be removed, but I need to do it clean. 
 		     "number_of_exits": 3,     - number of exits (stops)
 		     "saved": "env.npz",
