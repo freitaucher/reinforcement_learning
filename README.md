@@ -10,7 +10,7 @@ Consider the simplest static version of the "frozen lake" game:
 
 where the red squares represent the ice traps: if the mover (small blue square) hits one of them the gave is over with the reward "-1" (lose). The green squares are exits: By hitting one of them, the game is over with the reward "+1" (win). 
 
-After being randomly generated the environment is fixed (saved as numpy array in `env.npz`) and the agent is trained to learn it. Training goes over episodes. In each episode the mover is randomly placed in a free field and steps until pops into trap or successfully exits. In the training regime, steps are done either according to the q-table or completely randomly. This is regulated by generating random $0<\epsilon<1$: if $\epsilon>0.5$, the step is selected using the q-table, or taken randomly, if otherwise. Random steps are needed in order to learn the environment everywhere.
+After being randomly generated the environment is fixed (saved as numpy array in `env.npz`) and the agent is trained to learn it. Training goes over episodes. In each episode the mover is randomly placed in a free field and steps until pops into trap or successfully exits. In the training regime, steps are done either according to the q-table or completely randomly. This is regulated by generating random $0<\epsilon<1$: if $\epsilon>0.5$, the step is selected using the q-table, or taken randomly, if otherwise. Random steps are needed in order to learn the environment; it also guarantees that the training episode will be finite - e.g. if the mover is getting arrested in a particular environment landscape.
 
 After each  `step` taken in `s` position (`s+step -> s_new`) the corresponding entry in the q-table is getting updated:
 ```
