@@ -20,3 +20,6 @@ where `0<lr<1` and `0<gamma<1`  are the fixed learning rate and discount paramet
 
 The training episodes are repeated until the q-table is getting stable, i.e. does not change anymore. Once it is stabilized one can run the test episodes, just by setting the $\epsilon=1$  which guarantees that all steps are taken according to the qtable.
 
+
+
+##
