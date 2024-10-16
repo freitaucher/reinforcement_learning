@@ -16,7 +16,7 @@ With the `step` taken from `s` position (`s+step -> s_new`) the corresponding en
 ```
 qtable[s,step] = q_table  + lr * (reward[s_new] + gamma*qtable[s_new, step_new] - qtable), 
 ```
-where `0<lr<1` and `0<gamma<0`  are the fixed learning rate and discount factor parameters.  The `step_new` is the new step from the new position `s_new` suggested by the q-table (it might not be necessarily taken).
+where `0<lr<1` and `0<gamma<1`  are the fixed learning rate and discount factor parameters.  The `step_new` is the new step from the new position `s_new` suggested by the q-table (it might not be necessarily taken).
 
 The training episodes are repeated until the q-table is getting stable, i.e. does not change anymore. Once it is stabilized one can run the test episodes, just by setting the $\epsilon=1$  which guarantees that all steps are taken according to the qtable.
 
