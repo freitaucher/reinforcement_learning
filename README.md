@@ -14,5 +14,5 @@ After being randomly generated the environment is fixed (saved as numpy array in
 
 After each  `step` taken in `s` position, the corresponding entry of the q-table is getting updated:
 ```
-q_table[s,step] = q_table  + lr*(reward + gamma * qtable[s_new, step_new] - qtable)
+q_table[s,step] = q_table  + lr*(reward[s_new] + gamma * qtable[s_new, step_new] - qtable)
 ```
