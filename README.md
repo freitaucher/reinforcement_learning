@@ -17,3 +17,6 @@ After each  `step` taken in `s` position (`s+step -> s_new`) the corresponding e
 qtable[s,step] = q_table  + lr * (reward[s_new] + gamma*qtable[s_new, step_new] - qtable)
 ```
 The `step_new` is the new step from the new position `s_new` suggested by the qtable (it might not be necessarily taken).
+
+The training episodes should be repeated until the qtable is getting self-consistent, i.e. does not change anymore.
+
