@@ -1,0 +1,14 @@
+{
+    "outdir": "png",
+    "resolution": 50,
+    "n_episodes": 10,
+    "save_every": 1,
+    "environment_saved": "env.npz",
+    "environment_img": "env.png",
+    "environment_shape": [20,20,1],
+    "environment_number_of_exits": 3,
+    "qtable_last": "qlast.npy",
+    "learning_rate": 0.1,
+    "gamma": 0.1,
+    "eps": 1
+}
