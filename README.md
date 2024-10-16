@@ -16,4 +16,4 @@ After each  `step` taken in `s` position (`s+step -> s_new`) the corresponding e
 ```
 q_table[s,step] = q_table  + lr * (reward[s_new] + gamma*qtable[s_new, step_new] - qtable)
 ```
-The `step_new` is the new step taken from the new position `s_new` according to the qtable.
+The `step_new` is the new step from the new position `s_new` suggested by the qtable (it might not be necessarily taken).
