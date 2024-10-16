@@ -24,11 +24,17 @@ The training episodes are repeated until the q-table is getting stable, i.e. doe
 
 ## Implementation
 
+To run train or test, all you need is just to:
+```
+python main.py
+```
+The run is controlled by `config.json` file.
+
 ### config.json
 
 ```
 {
-    "outdir": "png",
+    "outdir": "png",                           - folder episodes subfolders; each subfolder contains images with moves. Is overwritten every time 
     "resolution": 50,
     "n_episodes": 10,
     "save_every": 1,
