@@ -12,7 +12,7 @@ where the red squares represent the ice traps: if the mover (small blue square) 
 
 After being randomly generated the environment is fixed (saved as numpy array in `env.npz`) and the agent is trained to learn it. Training goes over episodes. In each episode the mover is randomly placed in a free field and steps until pops into trap or successfully exits. In the training regime, steps are done either according to the q-table or completely randomly. This is regulated by generating random $0<\epsilon<1$: if $\epsilon>0.5$, the step is selected using the q-table, or taken randomly, if otherwise.
 
-After each action `step` taken in `s`-position the corresponding entry of the q-table is getting updated:
+After each  `step` taken in `s` position, the corresponding entry of the q-table is getting updated:
 ```
 q_table[s,step] = q_table  + lr*(reward + gamma * qtable[s_new, step_new] - qtable)
 ```
