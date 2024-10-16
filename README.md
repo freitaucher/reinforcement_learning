@@ -50,3 +50,5 @@ The run is controlled by `config.json` file.
 }
 ```
 
+For training increase the number of episodes: e.g. set `"n_episodes": 100000` (and e.g. `"save_every": 1000 ` accordingly). Also set random state probability to nonzero, e.g. `"random_state_prob": 0.5`
+
