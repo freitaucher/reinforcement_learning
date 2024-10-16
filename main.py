@@ -33,7 +33,7 @@ if __name__ == "__main__":
     
     env_shape = tuple(config["environment"]["shape"])
     if not os.path.exists(config["environment"]["saved"]) or eval(config["environment"]["new"]):
-        init_environment(env_shape=env_shape, stop_len=config["environment"]["number_of_exits"])
+        init_environment(env_shape=env_shape, danger_ratio=config["environment"]["danger_ratio"], stop_len=config["environment"]["number_of_exits"])
         print('environment is initialized...')
 
     env_data = np.load(config["environment"]["saved"],allow_pickle=True)

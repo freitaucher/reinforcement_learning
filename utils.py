@@ -1,4 +1,5 @@
 import numpy as np
+from math import prod
 import random
 from copy import deepcopy
 
@@ -32,7 +33,7 @@ def init_image(env,stop,danger, res=50):
 
 
 
-def init_environment(env_shape=(15,15,15),alpha=-1, stop_len=1):
+def init_environment(env_shape=(15,15,15), danger_ratio=0.2,  alpha=-1, stop_len=1):
     env = [0] * prod(env_shape)
     indices = set([i for i in range(len(env))])
 
@@ -47,7 +48,8 @@ def init_environment(env_shape=(15,15,15),alpha=-1, stop_len=1):
         stop_reshaped.append(  [stop[i]//(env_shape[1]*env_shape[2]), (stop[i] % (env_shape[1]*env_shape[2])) // env_shape[2], stop[i] %  env_shape[2]] )
         
     
-    danger_len = random.randint(2,len(indices)//4)
+    danger_len = int(len(indices)*danger_ratio) #random.randint(2,len(indices)//4)
+    
     danger=[]
     for i in range(danger_len):        
         danger.append( random.choice(list(indices)) )

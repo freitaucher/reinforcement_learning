@@ -39,7 +39,8 @@ The run is controlled by `config.json` file.
     "n_episodes": 10,			       - number of episodes. For training the good number is >10000
     "save_every": 1,			       - if you train for many episodes, it makes sense to save them more rarely
     "environment": { "new": "False",	       - if "True", the environment (as well as the qtable) will be initiated from scratch 
-		     "shape": [20,20,1],       - shape of the environment. In fact it is 2-dimensional: the third dimension will be removed, but I need to do it clean. 
+		     "shape": [20,20,1],       - shape of the environment. In fact it is 2-dimensional: the third dimension will be removed, but I need to do it clean.
+         	     "danger_ratio": 0.20,     - ratio of the traps relative to the total number of fields in the environment
 		     "number_of_exits": 3,     - number of exits (stops)
 		     "saved": "env.npz",       - file to store the environment information in numpy format
 		     "img": "env.png"},	       - image showing the environment

@@ -5,6 +5,7 @@
     "save_every": 1,
     "environment": { "new": "False",
 		     "shape": [20,20,1],
+		     "danger_ratio": 0.20,
 		     "number_of_exits": 3,
 		     "saved": "env.npz",
 		     "img": "env.png"},
