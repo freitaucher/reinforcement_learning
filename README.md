@@ -1,2 +1,6 @@
-# reinforcement_learning
-example showing explicit principles
+# Reinforcement Learning: explicit demo
+
+## What it is all about
+
+
+
