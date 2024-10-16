@@ -22,4 +22,7 @@ The training episodes are repeated until the q-table is getting stable, i.e. doe
 
 
 
-##
+## Implementation
+
+# config.json
+
