@@ -22,7 +22,25 @@ The training episodes are repeated until the q-table is getting stable, i.e. doe
 
 
 
-## Implementation
+# Implementation
 
-# config.json
+## config.json
+
+```
+{
+    "outdir": "png",
+    "resolution": 50,
+    "n_episodes": 10,
+    "save_every": 1,
+    "environment": { "new": "False",
+		     "shape": [20,20,1],
+		     "number_of_exits": 3,
+		     "saved": "env.npz",
+		     "img": "env.png"},
+    "qtable_last": "qlast.npy",
+    "learning_rate": 0.1,
+    "gamma": 0.1,
+    "random_step_prob": 0
+}
+```
 
