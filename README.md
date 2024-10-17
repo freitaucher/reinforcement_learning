@@ -1,6 +1,6 @@
 # Reinforcement Learning: basic demo
 
-The code can be endlessly optimized, but it runs fast anyway and the purpose is to show the logic.
+The code can be endlessly optimized, but it runs anyway fast and its purpose is just the logic.
 
 ## What it is all about
 
