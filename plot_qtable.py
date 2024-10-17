@@ -61,9 +61,9 @@ def plot_qtable(f_env, f_qtab):
     env_data = np.load(f_env,allow_pickle=True)
     env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],str(env_data['indices'])[1:-1]
     indices_free = [int(i) for i in indices_free.split(',')]
-    print(env.shape, len(danger), len(stop), len(indices_free), (len(danger)+len(stop)+len(indices_free)),'=',prod(env.shape))
+    #print(env.shape, len(danger), len(stop), len(indices_free), (len(danger)+len(stop)+len(indices_free)),'=',prod(env.shape))
     qtable=np.load(f_qtab)
-    print(qtable.shape, 'min, max:',np.min(qtable),np.max(qtable))
+    #print(qtable.shape, 'min, max:',np.min(qtable),np.max(qtable))
 
     res = (50, 50)
     img = init_image(env, stop, danger, res=res[0])
@@ -78,7 +78,7 @@ def plot_qtable(f_env, f_qtab):
             #"""
             step_index=order[0]
             img = draw_arrow(img, x,y, step_index, res, ql[step_index])
-            print(i, x, y, ql, step_index)
+            #print(i, x, y, ql, step_index)
             """
             for step_index in order[::-1]:
             img = draw_arrow(img, x,y, step_index, res, ql[step_index])

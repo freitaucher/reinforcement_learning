@@ -33,6 +33,8 @@ if __name__ == "__main__":
     env_shape = tuple(config["environment"]["shape"])
     if not os.path.exists(config["environment"]["saved"]) or eval(config["environment"]["new"]):
         init_environment(env_shape=env_shape, danger_ratio=config["environment"]["danger_ratio"], stop_len=config["environment"]["number_of_exits"])
+        env_data = np.load(config["environment"]["saved"],allow_pickle=True)
+        env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],env_data['indices']       
         print('environment is initialized...')
         img0 = init_image(env,stop,danger,res=res)   
         cv2.imwrite(config['environment']['img'],img0)
@@ -85,7 +87,7 @@ if __name__ == "__main__":
             s, qtable, reward_val, qtable_updated = do_step(s_old, env, qtable, random_step_prob=config["random_step_prob"], lr=config["learning_rate"], gamma=config["gamma"], qtable_save=config["qtable_last"])
             ########################################################################################################
             rewards.append(reward_val)            
-            print('do_step',count,'from', s_old, 'to', s, 'end:',stop)
+            #print('do_step',count,'from', s_old, 'to', s, 'end:',stop)
 
             if qtable_updated:
                 print('qtable is updated!')
