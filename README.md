@@ -58,7 +58,7 @@ For training, increase the number of episodes: e.g. set `"n_episodes": 100000` (
 For testing you might not need that many episodes, so reduce the "n_episodes" (also set `"save_every": 1` accordingly) and set `"random_step_prob": 0`.
 
 
-## Plot Q-table
+## Plot the Q-table
 
 Once we have the environment `env.npz` and qtable `qlast.npy`, we can visualize it:
 ```
