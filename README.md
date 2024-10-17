@@ -69,6 +69,6 @@ This procuces an image `qlast.png`:
   <img src="qlast.png" width=50% />
 </p>
 
-where the arrow corresponds to the step with the maximal q-value.
+where the arrow shows to the step with the maximal q-value from the current position. Thickness and darkness of the arrow scales with the amplitude of the q-value.
 
 
