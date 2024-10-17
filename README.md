@@ -69,6 +69,6 @@ This procuces an image `qlast.png`:
   <img src="qlast.png" width=50% />
 </p>
 
-where the arrow corresponds to the step with maximal q-value at the 
+where the arrow corresponds to the step with the maximal q-value.
 
 
