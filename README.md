@@ -63,7 +63,6 @@ For testing you might not need that many episodes, so reduce the "n_episodes" (a
 Once we have the environment `env.npz` and qtable `qlast.npy`, we can visualize it:
 ```
 python plot_qtable.py env.npz qlast.npy
-
 ```
 
 
