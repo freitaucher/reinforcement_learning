@@ -64,7 +64,7 @@ Once we have the environment `env.npz` and qtable `qlast.npy`, we can visualize 
 ```
 python plot_qtable.py env.npz qlast.npy
 ```
-This procuces an image `qlast.png`:
+This procuces the image `qlast.png`:
 <p align="center">
   <img src="qlast.png" width=50% />
 </p>
