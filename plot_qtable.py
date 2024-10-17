@@ -56,37 +56,41 @@ def draw_arrow(image, x,y, step_index, res, qval=0):
 
 
 
-fname=str(sys.argv[1])
-env_data = np.load(fname,allow_pickle=True)
-env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],str(env_data['indices'])[1:-1]
-indices_free = [int(i) for i in indices_free.split(',')]
-print(env.shape, len(danger), len(stop), len(indices_free), (len(danger)+len(stop)+len(indices_free)),'=',prod(env.shape))
-#quit()
-fname=str(sys.argv[2])
-qtable=np.load(fname)
-print(qtable.shape, 'min, max:',np.min(qtable),np.max(qtable))
+def plot_qtable(f_env, f_qtab):
 
-res = (50, 50)
-img = init_image(env, stop, danger, res=res[0])
+    env_data = np.load(f_env,allow_pickle=True)
+    env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],str(env_data['indices'])[1:-1]
+    indices_free = [int(i) for i in indices_free.split(',')]
+    print(env.shape, len(danger), len(stop), len(indices_free), (len(danger)+len(stop)+len(indices_free)),'=',prod(env.shape))
+    qtable=np.load(f_qtab)
+    print(qtable.shape, 'min, max:',np.min(qtable),np.max(qtable))
 
-
-for i,ql in enumerate(qtable):
-    x = i // env.shape[0]
-    y = i % env.shape[0]
-    if i in indices_free:
-        #if len(set(ql)) > 1:
-        order = np.argsort(-ql)
-        #"""
-        step_index=order[0]
-        img = draw_arrow(img, x,y, step_index, res, ql[step_index])
-        print(i, x, y, ql, step_index)
-        """
-        for step_index in order[::-1]:
-        img = draw_arrow(img, x,y, step_index, res, ql[step_index])
-        print(i, x, y, ql, step_index)
-        """
-
-cv2.imwrite(fname[:-3]+'png',img)
+    res = (50, 50)
+    img = init_image(env, stop, danger, res=res[0])
 
 
+    for i,ql in enumerate(qtable):
+        x = i // env.shape[0]
+        y = i % env.shape[0]
+        if i in indices_free:
+            #if len(set(ql)) > 1:
+            order = np.argsort(-ql)
+            #"""
+            step_index=order[0]
+            img = draw_arrow(img, x,y, step_index, res, ql[step_index])
+            print(i, x, y, ql, step_index)
+            """
+            for step_index in order[::-1]:
+            img = draw_arrow(img, x,y, step_index, res, ql[step_index])
+            print(i, x, y, ql, step_index)
+            """
+    
+    return img
 
+
+
+if __name__ == "__main__":
+    f_env = str(sys.argv[1])
+    f_qtab = str(sys.argv[2])
+    img = plot_qtable(f_env,f_qtab)
+    cv2.imwrite(f_qtab[:-3]+'png',img)

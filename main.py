@@ -5,9 +5,8 @@ import cv2
 import shutil,os
 import json
 from copy import deepcopy
-
 from utils import init_qtable, init_image, init_environment, reward, index2lin, do_step
-
+from plot_qtable import plot_qtable
 
 
 
@@ -35,7 +34,11 @@ if __name__ == "__main__":
     if not os.path.exists(config["environment"]["saved"]) or eval(config["environment"]["new"]):
         init_environment(env_shape=env_shape, danger_ratio=config["environment"]["danger_ratio"], stop_len=config["environment"]["number_of_exits"])
         print('environment is initialized...')
+        img0 = init_image(env,stop,danger,res=res)   
+        cv2.imwrite(config['environment']['img'],img0)
 
+    img0 = cv2.imread(config['environment']['img'])
+        
     env_data = np.load(config["environment"]["saved"],allow_pickle=True)
     env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],env_data['indices']
     if env.shape !=  env_shape:
@@ -53,8 +56,7 @@ if __name__ == "__main__":
         quit()
           
     print('environment shape:',env.shape, 'stop points shape:', stop.shape, 'trap points shape:', danger.shape)    
-    img0 = init_image(env,stop,danger,res=res)   
-    cv2.imwrite(config['environment']['img'],img0)
+
 
     
     for episode in range(n_episodes):
@@ -80,11 +82,15 @@ if __name__ == "__main__":
         while env[s[0], s[1], s[2]] != 999:
             s_old =  s
             ########################################################################################################            
-            s, qtable, reward_val = do_step(s_old, env, qtable, random_step_prob=config["random_step_prob"], lr=config["learning_rate"], gamma=config["gamma"])
+            s, qtable, reward_val, qtable_updated = do_step(s_old, env, qtable, random_step_prob=config["random_step_prob"], lr=config["learning_rate"], gamma=config["gamma"], qtable_save=config["qtable_last"])
             ########################################################################################################
             rewards.append(reward_val)            
             print('do_step',count,'from', s_old, 'to', s, 'end:',stop)
 
+            if qtable_updated:
+                print('qtable is updated!')
+                img0 = plot_qtable(config['environment']['saved'], config['qtable_last'])
+            
             # redraw:
             img = deepcopy(img0) # wipe start
             img[s[0]*res+res//4:s[0]*res+(3*res)//4, s[1]*res+res//4:s[1]*res+(3*res)//4] = (100,0,0) # set start

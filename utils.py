@@ -4,7 +4,6 @@ import random
 from copy import deepcopy
 
 
-
 def init_qtable(env):
     qtable = np.zeros((prod(env.shape), 4))
     np.save('qlast.npy', qtable)    
@@ -86,14 +85,14 @@ def index2lin(s, env):
 
 
 
-def do_step(s, env, qtable, random_step_prob=1, lr=0.1, gamma=0.1):
+def do_step(s, env, qtable, random_step_prob=1, lr=0.1, gamma=0.1, qtable_save='qlast.npy'):
 
     steps = [[-1,0,0],[1,0,0],[0,-1,0],[0,1,0]]
     order = np.argsort( -qtable[index2lin(s,env)])
     
     eps = random.uniform(0,1)    
 
-    if eps < random_step_prob:    
+    if eps > random_step_prob:    
         for step_index in order:
             s_new  = s + steps[step_index] # take the best according to qtable
             allowed = True
@@ -136,10 +135,11 @@ def do_step(s, env, qtable, random_step_prob=1, lr=0.1, gamma=0.1):
     reward_value = reward(s_new,env)
     qtable[index2lin(s,env),step_index] = old  + lr * ( reward_value  + gamma * qtable[index2lin(s_new,env), step_index_new] - old )
     
-    
+
+    qtable_updated=False
     if qtable[index2lin(s,env),step_index] != old:
-        print('qtable is updated!')
-        np.save('qlast.npy', qtable)
+        np.save(qtable_save, qtable)
+        qtable_updated=True
 
     
-    return s_new, qtable, reward_value
+    return s_new, qtable, reward_value, qtable_updated
