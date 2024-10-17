@@ -1,5 +1,7 @@
 # Reinforcement Learning: basic demo
 
+The code can be endlessly optimized, but it runs fast anyway and the purpose is to show the logic.
+
 ## What it is all about
 
 Consider the simplest static version of the "frozen lake" game:
