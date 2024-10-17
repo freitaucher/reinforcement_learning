@@ -71,4 +71,4 @@ This procuces the image `qlast.png`:
 
 where the arrow shows to the step with the maximal q-value from the current position. Thickness and darkness of the arrow scales with the amplitude of the q-value.
 
-
+Note, there are closed regions which do not possess exit. I.e., if the mover follows qtable it will move there forever, i.e. get "arrested". Just to avoid the arrest, the episode is cancelled after maximal reasonable number of moves. In this case $20\times 20=400$
