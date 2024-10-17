@@ -75,4 +75,4 @@ where the arrow shows to the step with the maximal q-value from the current posi
 
 ##
 
-Note, there are closed regions which do not possess exit. If the mover pops there and follows the q-table, it will move there forever, i.e. will get "arrested". Just to avoid such arrests, the episode is cancelled after maximal reasonable number of moves. In this case it is  $20\times 20=400$.
+Note, there are closed regions which do not possess exit. If the mover pops there and follows the q-table, it will move there forever, i.e. will get "arrested". Just to avoid such arrests, the episode is cancelled after maximal reasonable number of moves. In this case it is  $20\times 20=400$. If this happens in the training regime, due to `random_step_prob > 0` some random move will place mover in a danger region and the episode will finish earlier.
