@@ -49,7 +49,7 @@ The run is controlled by `config.json` file.
     "qtable_last": "qlast.npy",		       - file to store the current qtable
     "learning_rate": 0.1,		       - learning rate to update the qtable
     "gamma": 0.1,    			       - discout rate to update the qtable
-    "random_step_prob": 0		       - if "0" the steps are selected based on qtable. In training regime some portion of steps must be random - so set it within (0,1) 
+    "random_step_prob": 0		       - probability of the random step. If "0" the steps are selected based on qtable. In training regime some portion of steps must be random - so set it within (0,1) 
 }
 ```
 
