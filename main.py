@@ -9,27 +9,11 @@ from utils import init_qtable, init_image, init_environment, reward, index2lin, 
 from plot_qtable import plot_qtable
 
 
+def starting_step(config):
 
-if __name__ == "__main__":
-
-    
-    f = open("config.json")
-    config =  json.load(f)
-    f.close()
-    
-
-    outdir = config["outdir"]    
-    shutil.rmtree(outdir,ignore_errors=True)
-    os.mkdir(outdir)
-    
-    res = config["resolution"]    
-
-    n_episodes  = config["n_episodes"]
-
-    
     if eval(config["environment"]["new"]):
         print('\nStart from scratch!\n')
-    
+        
     env_shape = tuple(config["environment"]["shape"])
     if not os.path.exists(config["environment"]["saved"]) or eval(config["environment"]["new"]):
         init_environment(env_shape=env_shape, danger_ratio=config["environment"]["danger_ratio"], stop_len=config["environment"]["number_of_exits"])
@@ -45,8 +29,7 @@ if __name__ == "__main__":
     env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],env_data['indices']
     if env.shape !=  env_shape:
         print('the requested in config.json environment shape', env.shape, 'differs from one loaded from', config['environment']['saved'],':',env_shape)
-        quit()
-    
+        quit()    
    
     if not os.path.exists(config["qtable_last"]) or eval(config["environment"]["new"]):
         print('qtable is initialized...')
@@ -58,8 +41,29 @@ if __name__ == "__main__":
         quit()
           
     print('environment shape:',env.shape, 'stop points shape:', stop.shape, 'trap points shape:', danger.shape)    
+    
+    return env,stop,danger,indices_free, img0, qtable
 
 
+
+
+
+if __name__ == "__main__":
+  
+    
+    f = open("config.json")
+    config =  json.load(f)
+    f.close()
+    
+    outdir = config["outdir"]    
+    shutil.rmtree(outdir,ignore_errors=True)
+    os.mkdir(outdir)
+    
+    res = config["resolution"]    
+
+    n_episodes  = config["n_episodes"]
+
+    env,stop,danger,indices_free, img0, qtable = starting_step(config)
     
     for episode in range(n_episodes):
 
