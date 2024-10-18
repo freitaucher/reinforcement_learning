@@ -20,7 +20,7 @@ def starting_step(config):
         env_data = np.load(config["environment"]["saved"],allow_pickle=True)
         env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],env_data['indices']       
         print('environment is initialized...')
-        img0 = init_image(env,stop,danger,res=res)   
+        img0 = init_image(env,stop,danger,res=config["resolution"])   
         cv2.imwrite(config['environment']['img'],img0)
 
     img0 = cv2.imread(config['environment']['img'])
@@ -53,17 +53,15 @@ if __name__ == "__main__":
     
     f = open("config.json")
     config =  json.load(f)
-    f.close()
-    
+    f.close()    
     outdir = config["outdir"]    
     shutil.rmtree(outdir,ignore_errors=True)
-    os.mkdir(outdir)
-    
+    os.mkdir(outdir)    
     res = config["resolution"]    
-
     n_episodes  = config["n_episodes"]
-
     env,stop,danger,indices_free, img0, qtable = starting_step(config)
+    count_max = prod(env.shape)
+
     
     for episode in range(n_episodes):
 
@@ -89,13 +87,18 @@ if __name__ == "__main__":
             s_old =  s
             ########################################################################################################            
             s, qtable, reward_val, qtable_updated = do_step(s_old, env, qtable, random_step_prob=config["random_step_prob"], lr=config["learning_rate"], gamma=config["gamma"], qtable_save=config["qtable_last"])
+
+            #ds = model(s_old)
+            #s = s_old + ds
+            #loss =  (1-lr) * reward(s)  + lr * gamma * np.min(np.array([reward(s+ds) for ds in steps]))
+            
             ########################################################################################################
             rewards.append(reward_val)            
             #print('do_step',count,'from', s_old, 'to', s, 'end:',stop)
 
             if qtable_updated:
                 print('qtable is updated!')
-                img0 = plot_qtable(config['environment']['saved'], config['qtable_last'])
+                img0 = plot_qtable(config['environment']['saved'], config['qtable_last'], res=(res,res))
             
             # redraw:
             img = deepcopy(img0) # wipe start
@@ -110,8 +113,8 @@ if __name__ == "__main__":
                 print('agent is killed!')
                 break
 
-            if count > prod(env.shape):
-                print('agent is arrested!')
+            if count > count_max :
+                #print('agent is arrested!')
                 break
 
         print('episode:  %8d' % episode, 'mean reward: %10.3f' % np.mean(rewards), 'number of steps: %4d' % count)

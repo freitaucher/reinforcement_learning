@@ -56,7 +56,7 @@ def draw_arrow(image, x,y, step_index, res, qval=0):
 
 
 
-def plot_qtable(f_env, f_qtab):
+def plot_qtable(f_env, f_qtab, res=(50,50)):
 
     env_data = np.load(f_env,allow_pickle=True)
     env,stop,danger,indices_free = env_data['env'],env_data['stop'],env_data['danger'],str(env_data['indices'])[1:-1]
@@ -65,7 +65,6 @@ def plot_qtable(f_env, f_qtab):
     qtable=np.load(f_qtab)
     #print(qtable.shape, 'min, max:',np.min(qtable),np.max(qtable))
 
-    res = (50, 50)
     img = init_image(env, stop, danger, res=res[0])
 
 
@@ -92,5 +91,6 @@ def plot_qtable(f_env, f_qtab):
 if __name__ == "__main__":
     f_env = str(sys.argv[1])
     f_qtab = str(sys.argv[2])
-    img = plot_qtable(f_env,f_qtab)
+    res = int(sys.argv[3])
+    img = plot_qtable(f_env,f_qtab, res=(res,res))
     cv2.imwrite(f_qtab[:-3]+'png',img)
